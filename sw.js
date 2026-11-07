@@ -1,5 +1,5 @@
 // Service worker: aplikasi tetap terbuka saat sinyal di dapur lemah.
-const CACHE = 'jt-v5';
+const CACHE = 'jt-v6';
 const CORE = ['./', 'index.html', 'qrcode.js', 't1.jpg', 't2.jpg', 't3.jpg', 't4.jpg', 'nasi.jpg',
   'paspor/JT-MND-261024-01.json', 'skema-paspor.json', 'manifest.webmanifest', 'ikon-192.png', 'ikon-512.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting())); });
