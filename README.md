@@ -26,7 +26,7 @@ Setiap kiriman memperoleh **paspor ber-QR** yang memuat berat, mutu, asal, dan d
 | Halaman | Isi |
 |---|---|
 | Beranda | Masalah, solusi, bukti lapangan 6 SPPG (harga Rp7.500–11.000/kg), dan cara kerja dalam satu layar |
-| 1 · Catat | Alur aplikasi petugas: 4 foto timbangan nyata, 24 Oktober 2026 (16 galon) |
+| 1 · Catat | **Kamera berstempel otomatis:** foto timbangan → stempel waktu, tanggal, nama dapur, GPS, dan kode foto (SHA-256) → tara dan berat bersih dihitung → paspor ber-QR yang isinya tersimpan di QR (bisa diperiksa tanpa server) dan dapat diunduh sebagai JSON. Disertai contoh data nyata 24 Oktober 2026 (4 foto, 16 galon) |
 | 2 · Mutu | **Berjalan langsung di peramban:** foto jelantah di atas kertas putih → kejernihan (cahaya yang menembus minyak), warna CIELAB (L\*, b\*, sudut warna), dan indikator partikel → kelas A/B/C dan jalur bioavtur, biodiesel, atau nonenergi |
 | 3 · Paspor | Paspor kiriman ber-QR dan simulasi serah terima dapur → pengepul → tujuan akhir |
 | 4 · Dasbor | Neraca minyak, kiriman bulanan, temuan audit foto |

@@ -149,6 +149,16 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font
 .road i{font-style:normal;font-size:11px;color:var(--blue);font-weight:700}.road b{display:block;font-size:14px}.road span{font-size:12px;color:var(--muted)}
 .src{margin:6px 0 0;padding-left:20px;font-size:12.5px}.src li{margin-bottom:4px}
 #install{background:#fff;color:var(--blue);border:0;border-radius:10px;padding:8px 12px;font:700 12.5px inherit;font-family:inherit;cursor:pointer;flex:none}
+.setup{margin-top:10px;font-size:13.5px}.setup summary{cursor:pointer;color:var(--blue);font-weight:600}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.fgrid label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted)}
+.fgrid input,.fgrid select{padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:15px;color:var(--ink);background:#fff;width:100%}
+.chk{display:flex;gap:8px;align-items:center;margin-top:8px;font-size:13px}
+.crow{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.crow img{width:52px;height:52px;object-fit:cover;border-radius:8px}
+.crow small{display:block;color:var(--muted);font-size:11.5px}
+.crow a{font-size:12px}
+h3.sub{font-size:16px;margin:22px 0 2px;padding-top:16px;border-top:1px solid var(--line)}
 footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
 .hide{display:none!important}
 </style>
@@ -235,7 +245,52 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
 <!-- ============ 1. CATAT ============ -->
 <section id="catat">
  <h2>Catat penjualan jelantah</h2>
- <p class="lead">Aplikasi petugas dapur · SPPG Murnisari Mande, Cianjur · Sabtu, 24 Oktober 2026 · 4 kali timbang, 16 galon. Petugas cukup memotret layar timbangan dengan aplikasi kamera berstempel waktu yang sudah dipakai sehari-hari.</p>
+ <p class="lead">Petugas cukup memotret layar timbangan. Stempel waktu, tanggal, nama dapur, lokasi, dan kode foto ditambahkan otomatis, seperti kamera berstempel waktu yang sudah dipakai di dapur MBG. Foto diolah di ponsel dan tidak dikirim ke mana pun.</p>
+ <div class="cols">
+  <div>
+   <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>Catat kiriman baru</b><span class="tag real">berjalan di ponsel</span></div>
+    <label class="btn" for="cfile" style="margin-top:10px">
+     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+     Foto timbangan
+    </label>
+    <input type="file" id="cfile" accept="image/*" capture="environment" class="hide">
+    <details class="setup" id="csetup">
+     <summary>Pengaturan dapur</summary>
+     <div class="fgrid">
+      <label>Nama dapur<input type="text" id="sName" value="SPPG Murnisari Mande"></label>
+      <label>Kode dapur<input type="text" id="sCode" value="MND" maxlength="3"></label>
+      <label>Wadah<select id="sWadah"><option value="galon|0.45">Galon (tara 0,45 kg)</option><option value="jeriken|1.2">Jeriken 20 L (tara 1,2 kg)</option><option value="ember|0.6">Ember (tara 0,6 kg)</option></select></label>
+      <label>Harga (Rp/kg)<input type="number" id="sHarga" value="8000" step="100" inputmode="numeric"></label>
+     </div>
+     <label class="chk"><input type="checkbox" id="sLoc" checked> Sertakan lokasi (GPS) pada stempel</label>
+     <div class="note">Tara jeriken dan ember adalah contoh; timbang wadah kosong dapur Anda sekali, lalu sesuaikan. Pengaturan disimpan di ponsel ini.</div>
+    </details>
+   </div>
+   <div class="card hide" id="cnew">
+    <canvas id="ccv" style="width:100%;border-radius:12px;display:block;background:#000"></canvas>
+    <div class="fgrid" style="margin-top:10px">
+     <label>Berat di layar (kg)<input type="number" id="cW" step="0.01" inputmode="decimal" placeholder="contoh 55,30"></label>
+     <label>Jumlah wadah<input type="number" id="cN" value="4" min="1" step="1" inputmode="numeric"></label>
+    </div>
+    <div class="note" id="cHint">Ketik angka yang tampil di layar timbangan. Pada uji coba, angka ini diisi otomatis oleh model AI pembaca layar yang sedang dilatih dari foto-foto nyata dapur.</div>
+    <div class="line"><span>Tara</span><b id="cTara">–</b></div>
+    <div class="line"><span>Berat bersih</span><b id="cNet" style="color:var(--blue);font-size:18px">–</b></div>
+    <div class="row" style="margin-top:10px"><button class="btn" id="cSave" type="button" disabled>Simpan timbangan</button><button class="btn sec" id="cCancel" type="button" style="width:auto">Batal</button></div>
+   </div>
+  </div>
+  <div>
+   <div class="card">
+    <b>Timbangan hari ini</b>
+    <div id="clist" style="margin-top:6px"><div class="note">Belum ada foto. Ketuk "Foto timbangan" untuk mulai.</div></div>
+    <button class="btn" id="cIssue" type="button" style="margin-top:10px" disabled>Terbitkan paspor kiriman</button>
+    <button class="btn sec" id="cClear" type="button" style="margin-top:8px">Hapus daftar</button>
+   </div>
+   <div class="pass hide" id="cPass"></div>
+  </div>
+ </div>
+ <h3 class="sub">Contoh data nyata: penjualan 24 Oktober 2026</h3>
+ <p class="lead">SPPG Murnisari Mande, Cianjur · 4 kali timbang, 16 galon · foto dari kamera berstempel waktu yang dipakai petugas.</p>
  <div class="cols">
   <div>
    <div class="card">
@@ -433,7 +488,7 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
    <button class="btn" id="vbtn">Periksa</button>
    <div id="vout" style="margin-top:12px"></div>
   </div>
-  <div class="card">
+  <div class="card" id="hashcard">
    <b>Sidik digital foto sumber</b>
    <div class="note" style="margin-bottom:8px">Dihitung langsung di peramban Anda dari berkas foto (SHA-256). Hasilnya dicocokkan dengan sidik yang tercatat di <a href="paspor/JT-MND-261024-01.json">berkas paspor</a>. Jika satu piksel foto diubah, sidiknya berubah total, sehingga dokumen sumber tidak dapat diganti diam-diam.</div>
    <table><thead><tr><th>Foto</th><th>SHA-256 dihitung</th><th>Paspor</th></tr></thead><tbody id="hashes"><tr><td colspan="3" class="note">Menghitung…</td></tr></tbody></table>
@@ -558,7 +613,7 @@ function go() {
   if (t === 'verifikasi') { const id = location.hash.split('/')[1]; if (id) { vid.value = decodeURIComponent(id); check(); } }
   if (anchor) document.getElementById(anchor).scrollIntoView(); else window.scrollTo(0, 0);
 }
-window.addEventListener('hashchange', go);
+window.addEventListener('hashchange', () => go());
 
 // ---------- catat ----------
 const photos = document.getElementById('photos');
@@ -802,6 +857,140 @@ function analyze() {
   mres.classList.add('on'); mstepTxt();
 }
 loadSample(1);
+
+// ---------- catat kiriman baru: kamera berstempel otomatis ----------
+const SKEY = 'jt-setup', RKEY = 'jt-rows';
+const sFields = ['sName', 'sCode', 'sWadah', 'sHarga', 'sLoc'];
+try { const st = JSON.parse(store.get(SKEY) || '{}'); sFields.forEach(k => { if (k in st) { const el = document.getElementById(k); if (el.type === 'checkbox') el.checked = st[k]; else el.value = st[k]; } }); } catch (e) {}
+sFields.forEach(k => document.getElementById(k).addEventListener('change', () => {
+  const st = {}; sFields.forEach(x => { const el = document.getElementById(x); st[x] = el.type === 'checkbox' ? el.checked : el.value; }); store.set(SKEY, JSON.stringify(st)); drawStamp(); calcNew();
+}));
+let ROWS = []; try { ROWS = JSON.parse(store.get(RKEY) || '[]'); } catch (e) { ROWS = []; }
+let NEW = null; // {img, time, src, loc, kode}
+const wadah = () => { const [j, t] = sWadah.value.split('|'); return { jenis: j, tara: +t }; };
+const hari = (d) => d.toLocaleDateString('id-ID', { weekday: 'long' });
+const tgl = (d) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+const jam = (d) => d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false }).replace('.', ':');
+const zona = (d) => { try { return new Intl.DateTimeFormat('id-ID', { timeZoneName: 'short' }).formatToParts(d).find(p => p.type === 'timeZoneName').value; } catch (e) { return ''; } };
+async function shaBuf(buf) { const h = await crypto.subtle.digest('SHA-256', buf); return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); }
+function getLoc() {
+  return new Promise(res => {
+    if (!sLoc.checked || !navigator.geolocation) return res(null);
+    navigator.geolocation.getCurrentPosition(p => res({ lat: p.coords.latitude, lon: p.coords.longitude, acc: Math.round(p.coords.accuracy) }), () => res(null), { enableHighAccuracy: true, timeout: 6000, maximumAge: 60000 });
+  });
+}
+cfile.onchange = async (e) => {
+  const f = e.target.files[0]; if (!f) return; cfile.value = '';
+  const now = Date.now(), fromCam = Math.abs(now - f.lastModified) < 180000;
+  const time = new Date(fromCam ? now : f.lastModified);
+  const [buf, loc] = await Promise.all([f.arrayBuffer(), getLoc()]);
+  const kode = (await shaBuf(buf)).slice(0, 12).toUpperCase();
+  const im = new Image();
+  im.onload = () => {
+    NEW = { img: im, time, src: fromCam ? 'kamera' : 'berkas', loc, kode, sha: null };
+    cnew.classList.remove('hide'); cW.value = ''; cHint.textContent = 'Ketik angka yang tampil di layar timbangan. Pada uji coba, angka ini diisi otomatis oleh model AI pembaca layar yang sedang dilatih dari foto-foto nyata dapur.';
+    drawStamp(); calcNew(); cnew.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (window.readLED) { const v = readLED(im); if (v) { cW.value = v.toFixed(2); cHint.innerHTML = '<b>Saran AI (eksperimental): ' + fmt(v) + ' kg.</b> Periksa dengan angka di layar sebelum menyimpan.'; drawStamp(); calcNew(); } }
+  };
+  im.src = URL.createObjectURL(f);
+};
+function drawStamp() {
+  if (!NEW) return;
+  const im = NEW.img, W = Math.min(1080, im.naturalWidth), H = Math.round(im.naturalHeight * W / im.naturalWidth);
+  ccv.width = W; ccv.height = H; const c = ccv.getContext('2d'); c.drawImage(im, 0, 0, W, H);
+  const u = Math.min(W, H * 0.75) / 360, d = NEW.time, w = wadah(), n = Math.max(1, parseInt(cN.value || '1', 10)), berat = parseFloat(cW.value);
+  // label kanan atas
+  c.textAlign = 'right'; c.textBaseline = 'top'; c.font = `700 ${12 * u}px "Plus Jakarta Sans",sans-serif`; c.fillStyle = '#ffd24a';
+  c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 4 * u; c.fillText('JELANTAH TERBANG', W - 10 * u, 10 * u);
+  c.font = `${8.5 * u}px "Plus Jakarta Sans",sans-serif`; c.fillStyle = '#fff'; c.fillText(NEW.src === 'kamera' ? 'Stempel otomatis saat foto' : 'Waktu dari berkas foto', W - 10 * u, 25 * u);
+  c.shadowBlur = 0;
+  // panel kiri bawah
+  const lines = [[`${n} ${w.jenis}` + (isFinite(berat) ? ` · layar ${fmt(berat)} kg` : ''), 10.5]];
+  if (NEW.loc) lines.push([`${NEW.loc.lat.toFixed(5)}, ${NEW.loc.lon.toFixed(5)} (±${NEW.loc.acc} m)`, 9]);
+  const pw = 230 * u, ph = (88 + lines.length * 14) * u, px0 = 10 * u, py0 = H - ph - 26 * u;
+  c.fillStyle = 'rgba(16,45,82,.86)'; c.beginPath(); c.roundRect ? c.roundRect(px0, py0, pw, ph, 8 * u) : c.rect(px0, py0, pw, ph); c.fill();
+  c.textAlign = 'left'; c.fillStyle = '#ffd24a'; c.font = `700 ${10 * u}px "Plus Jakarta Sans",sans-serif`; c.fillText('Jelantah · ' + (sName.value || 'SPPG'), px0 + 10 * u, py0 + 9 * u, pw - 20 * u);
+  c.fillStyle = '#ffd24a'; c.fillRect(px0 + 10 * u, py0 + 26 * u, pw - 20 * u, 1.2 * u);
+  c.fillStyle = '#fff'; c.font = `700 ${30 * u}px "Plus Jakarta Sans",sans-serif`; c.fillText(jam(d), px0 + 10 * u, py0 + 32 * u);
+  const jw = c.measureText(jam(d)).width;
+  c.font = `${10 * u}px "Plus Jakarta Sans",sans-serif`; c.fillText(hari(d) + ' ' + zona(d), px0 + 18 * u + jw, py0 + 36 * u); c.fillText(tgl(d), px0 + 18 * u + jw, py0 + 50 * u);
+  lines.forEach(([t, sz], k) => { c.font = `${sz * u}px "Plus Jakarta Sans",sans-serif`; c.fillStyle = k ? '#d6e6f7' : '#fff'; c.fillText(t, px0 + 10 * u, py0 + (74 + k * 14) * u, pw - 20 * u); });
+  // kode foto
+  c.fillStyle = 'rgba(0,0,0,.55)'; c.fillRect(0, H - 20 * u, W, 20 * u);
+  c.fillStyle = '#fff'; c.font = `${9 * u}px ui-monospace,monospace`; c.fillText('Kode foto: ' + NEW.kode + '  ·  SHA-256 foto asli', 10 * u, H - 15 * u);
+}
+function calcNew() {
+  if (!NEW) return; const w = wadah(), n = Math.max(1, parseInt(cN.value || '1', 10)), b = parseFloat(cW.value);
+  const tara = w.tara * n; cTara.textContent = fmt(tara) + ' kg (' + n + ' × ' + fmt(w.tara) + ')';
+  const ok = isFinite(b) && b > tara; cNet.textContent = ok ? fmt(b - tara) + ' kg' : '–'; cSave.disabled = !ok;
+}
+[cW, cN].forEach(x => x.addEventListener('input', () => { drawStamp(); calcNew(); }));
+cCancel.onclick = () => { NEW = null; cnew.classList.add('hide'); };
+cSave.onclick = async () => {
+  drawStamp();
+  const blob = await new Promise(r => ccv.toBlob(r, 'image/jpeg', 0.85));
+  const sha = await shaBuf(await blob.arrayBuffer());
+  const th = document.createElement('canvas'); th.width = 160; th.height = Math.round(160 * ccv.height / ccv.width); th.getContext('2d').drawImage(ccv, 0, 0, th.width, th.height);
+  const w = wadah(), n = Math.max(1, parseInt(cN.value, 10)), b = parseFloat(cW.value);
+  const row = { t: NEW.time.toISOString(), src: NEW.src, b, n, j: w.jenis, ta: w.tara, net: +(b - w.tara * n).toFixed(2), kode: NEW.kode, sha, loc: NEW.loc, th: th.toDataURL('image/jpeg', 0.7) };
+  ROWS.push(row); store.set(RKEY, JSON.stringify(ROWS));
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `jelantah_${sCode.value || 'SPPG'}_${row.t.slice(0, 16).replace(/[-:T]/g, '')}.jpg`;
+  lastBlobUrl = a.href; lastName = a.download;
+  NEW = null; cnew.classList.add('hide'); drawList(true);
+};
+let lastBlobUrl = null, lastName = '';
+function drawList(justSaved) {
+  if (!ROWS.length) { clist.innerHTML = '<div class="note">Belum ada foto. Ketuk "Foto timbangan" untuk mulai.</div>'; cIssue.disabled = true; return; }
+  let tb = 0, tn = 0, tw = 0;
+  clist.innerHTML = ROWS.map((r, i) => { tb += r.b; tn += r.net; tw += r.n; const d = new Date(r.t);
+    return `<div class="crow"><img src="${r.th}" alt=""><div><b>${i + 1}. ${fmt(r.b)} kg</b> → bersih ${fmt(r.net)} kg<small>${jam(d)} · ${d.toLocaleDateString('id-ID')} · ${r.n} ${r.j} · kode ${r.kode}${r.loc ? ' · GPS' : ''}</small></div>${justSaved && i === ROWS.length - 1 && lastBlobUrl ? `<a href="${lastBlobUrl}" download="${lastName}">Unduh foto</a>` : ''}</div>`; }).join('') +
+    `<div class="line"><span>Total ${ROWS.length} timbang · ${tw} wadah</span><b>${fmt(tn)} kg bersih</b></div><div class="line"><span>Nilai (${rp(+sHarga.value || 0)}/kg)</span><b>${rp(tn * (+sHarga.value || 0))}</b></div>`;
+  cIssue.disabled = false;
+}
+cClear.onclick = () => { ROWS = []; store.set(RKEY, '[]'); cPass.classList.add('hide'); drawList(); };
+// paspor ringkas: data dikodekan di QR sehingga bisa diperiksa tanpa server
+const b64u = (str) => btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const unb64u = (s) => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
+cIssue.onclick = () => {
+  const d0 = new Date(ROWS[0].t), ymd = d0.toISOString().slice(2, 10).replace(/-/g, '');
+  const id = `JT-${(sCode.value || 'XXX').toUpperCase().padEnd(3, 'X')}-${ymd}-${String((parseInt(store.get('jt-seq-' + ymd) || '0', 10) + 1)).padStart(2, '0')}`;
+  store.set('jt-seq-' + ymd, String(parseInt(id.slice(-2), 10)));
+  const P = { v: 1, i: id, s: sName.value, h: +sHarga.value || 0, w: ROWS.map(r => [Math.floor(Date.parse(r.t) / 60000), Math.round(r.b * 100), r.n, Math.round(r.ta * 100), r.j[0], r.sha.slice(0, 8)]) };
+  const url = base + '#p/' + b64u(JSON.stringify(P));
+  const tn = ROWS.reduce((a, r) => a + r.net, 0);
+  const full = { id, versi_skema: '0.1', status: 'purwarupa', asal: { sppg: sName.value }, tanggal: d0.toISOString().slice(0, 10),
+    timbangan: ROWS.map((r, k) => ({ urutan: k + 1, waktu: r.t, berat_layar_kg: r.b, wadah: { jenis: r.j, jumlah: r.n, tara_per_wadah_kg: r.ta }, berat_bersih_kg: r.net, foto: { kode: r.kode, sha256: r.sha, sumber_waktu: r.src }, lokasi: r.loc })),
+    total: { jumlah_wadah: ROWS.reduce((a, r) => a + r.n, 0), berat_bersih_kg: +tn.toFixed(2) }, harga_rp_per_kg: +sHarga.value || 0, nilai_rp: Math.round(tn * (+sHarga.value || 0)),
+    pernyataan_jelantah_murni: true, rantai: [{ peran: 'dapur', pihak: sName.value, waktu: ROWS[ROWS.length - 1].t, berat_kg: +tn.toFixed(2) }] };
+  const jurl = URL.createObjectURL(new Blob([JSON.stringify(full, null, 2)], { type: 'application/json' }));
+  let svg = ''; try { const q = qrcode(0, 'M'); q.addData(url); q.make(); svg = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }); } catch (e) { svg = '<div class="note">QR gagal dibuat</div>'; }
+  cPass.innerHTML = `<div class="hd"><b>${id}</b><span class="tag" style="background:#fff">Paspor baru</span></div><div class="bd">
+    <div class="qrbox"><div id="cqr" style="width:124px;height:124px;flex:none;border:1px solid var(--line);border-radius:10px;padding:4px">${svg}</div>
+    <div><div class="k">Asal</div><div class="v">${sName.value}</div><div class="k" style="margin-top:8px">Berat bersih</div><div class="big">${fmt(tn)} kg</div><div class="k">${ROWS.length} timbang · ${rp(tn * (+sHarga.value || 0))}</div></div></div>
+    <div class="row" style="flex-wrap:wrap"><a class="btn sec" style="text-decoration:none;flex:1" href="${url}" target="_blank" rel="noopener">Buka verifikasi</a><a class="btn sec" style="text-decoration:none;flex:1" href="${jurl}" download="${id}.json">Unduh JSON</a>${navigator.share ? '<button class="btn sec" id="cShare" type="button" style="flex:1">Bagikan</button>' : ''}</div>
+    <div class="note">Isi paspor (berat, wadah, waktu, dan kode foto) tersimpan di dalam QR, sehingga pengepul dapat memeriksanya tanpa server. Pada tahap uji coba, paspor juga disimpan di server tim.</div></div>`;
+  cPass.classList.remove('hide'); cPass.querySelector('#cqr svg') && (cPass.querySelector('#cqr svg').style.cssText = 'width:100%;height:100%;display:block');
+  const sh = document.getElementById('cShare'); if (sh) sh.onclick = () => navigator.share({ title: 'Paspor jelantah ' + id, text: `Paspor jelantah ${id}: ${fmt(tn)} kg dari ${sName.value}`, url }).catch(() => {});
+  cPass.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+drawList();
+// verifikasi paspor dari QR (#p/...)
+function showQR() {
+  const m = location.hash.match(/^#p\/(.+)$/); if (!m) return false;
+  let P; try { P = JSON.parse(unb64u(m[1])); } catch (e) { P = null; }
+  document.querySelectorAll('main > section').forEach(s => s.classList.toggle('on', s.id === 'verifikasi'));
+  document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.t === 'verifikasi'));
+  if (!P) { vout.innerHTML = '<div class="warn"><b>QR tidak terbaca</b><br>Data paspor rusak atau tidak lengkap.</div>'; return true; }
+  vid.value = P.i; let tn = 0, tw = 0;
+  const rows = P.w.map((r, k) => { const d = new Date(r[0] * 60000), b = r[1] / 100, net = b - r[2] * r[3] / 100; tn += net; tw += r[2];
+    return `<tr><td>${k + 1}</td><td>${jam(d)}</td><td class="n">${fmt(b)}</td><td class="n">${r[2]}</td><td class="n"><b>${fmt(net)}</b></td><td class="mono">${r[5]}…</td></tr>`; }).join('');
+  const d0 = new Date(P.w[0][0] * 60000);
+  vout.innerHTML = `<div class="okbox"><b>✓ Paspor terbaca dari QR</b><br>${P.i} · ${P.s} · ${tgl(d0)}<br>${fmt(tn)} kg bersih · ${tw} wadah · ${rp(tn * P.h)}</div>
+    <table style="margin-top:8px"><thead><tr><th>#</th><th>Jam</th><th class="n">Layar</th><th class="n">Wadah</th><th class="n">Bersih</th><th>Sidik foto</th></tr></thead><tbody>${rows}</tbody></table>
+    <div class="note">Purwarupa: paspor dibuat di ponsel petugas. Pada uji coba, sidik foto dicocokkan dengan arsip foto di server tim.</div>`;
+  hashcard.classList.add('hide'); window.scrollTo(0, 0); return true;
+}
+const _go = go; go = function () { if (!showQR()) { hashcard.classList.remove('hide'); _go(); } };
 
 go();
 </script>
