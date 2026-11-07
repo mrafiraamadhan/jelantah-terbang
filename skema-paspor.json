@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mrafiraamadhan.github.io/jelantah-terbang/skema-paspor.json",
+  "title": "Paspor kiriman jelantah JELANTAH TERBANG",
+  "description": "Skema data satu kiriman jelantah dari dapur MBG, disusun agar dapat dipetakan ke pernyataan titik asal jelantah ISCC dan laporan transparansi BGN. Versi 0.1 (purwarupa).",
+  "type": "object",
+  "required": ["id", "asal", "tanggal", "timbangan", "total", "pernyataan_jelantah_murni", "rantai"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^JT-[A-Z]{3}-[0-9]{6}-[0-9]{2}$", "description": "JT-<kode dapur>-<yymmdd>-<urutan>" },
+    "versi_skema": { "type": "string" },
+    "status": { "enum": ["purwarupa", "uji_coba", "produksi"] },
+    "asal": {
+      "type": "object", "required": ["sppg", "kabupaten", "provinsi"],
+      "properties": { "sppg": { "type": "string" }, "kecamatan": { "type": "string" }, "kabupaten": { "type": "string" }, "provinsi": { "type": "string" } }
+    },
+    "tanggal": { "type": "string", "format": "date" },
+    "timbangan": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["waktu", "berat_layar_kg", "wadah", "berat_bersih_kg", "foto"],
+        "properties": {
+          "urutan": { "type": "integer" },
+          "waktu": { "type": "string", "format": "date-time" },
+          "berat_layar_kg": { "type": "number", "minimum": 0 },
+          "wadah": { "type": "object", "properties": { "jenis": { "type": "string" }, "jumlah": { "type": "integer" }, "tara_per_wadah_kg": { "type": "number" } } },
+          "berat_bersih_kg": { "type": "number", "minimum": 0 },
+          "foto": { "type": "object", "required": ["sha256"], "properties": { "berkas": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } }
+        }
+      }
+    },
+    "total": { "type": "object", "properties": { "jumlah_wadah": { "type": "integer" }, "berat_kotor_kg": { "type": "number" }, "tara_kg": { "type": "number" }, "berat_bersih_kg": { "type": "number" }, "catatan_manual_kg": { "type": "number" } } },
+    "mutu": { "type": "object", "properties": { "kelas": { "enum": ["A", "B", "C", null] }, "jalur": { "enum": ["bioavtur", "biodiesel", "nonenergi", null] }, "kejernihan_persen": { "type": ["number", "null"] }, "alb_persen": { "type": ["number", "null"] }, "metode": { "type": "string" } } },
+    "harga_rp_per_kg": { "type": "number" },
+    "nilai_rp": { "type": "number" },
+    "pernyataan_jelantah_murni": { "type": "boolean", "description": "Dapur menyatakan jelantah tidak dicampur minyak baru atau limbah lain" },
+    "neraca_massa": { "type": "object", "properties": { "periode": { "type": "string" }, "minyak_dibeli_l": { "type": ["number", "string"] }, "rasio_jelantah_minyak": { "type": "number" }, "status": { "type": "string" } } },
+    "rantai": {
+      "type": "array", "description": "Setiap serah terima dipindai dari QR paspor yang sama",
+      "items": { "type": "object", "required": ["peran"], "properties": { "peran": { "enum": ["dapur", "pengepul", "pengumpul", "tujuan_akhir"] }, "pihak": { "type": ["string", "null"] }, "waktu": { "type": ["string", "null"] }, "berat_kg": { "type": ["number", "null"] }, "catatan": { "type": "string" } } }
+    },
+    "iscc": { "type": "object", "properties": { "pernyataan_titik_asal": { "type": "boolean" }, "catatan": { "type": "string" } } }
+  }
+}

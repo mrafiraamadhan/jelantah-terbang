@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JELANTAH TERBANG · Purwarupa</title>
 <meta name="description" content="Purwarupa paspor digital berbasis AI bagi jelantah dapur MBG menuju bahan baku bioavtur bersertifikat. Tim Wirahmadhan, UNS Innovation Hackathon 2026.">
+<meta name="theme-color" content="#1d5fa6">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="ikon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="ikon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JELANTAH TERBANG · Paspor digital jelantah dapur MBG">
+<meta property="og:description" content="Purwarupa: AI membaca timbangan, menilai mutu, dan menerbitkan paspor ber-QR agar jelantah dapur MBG layak menjadi bahan baku bioavtur bersertifikat.">
+<meta property="og:image" content="https://mrafiraamadhan.github.io/jelantah-terbang/og.png">
+<meta property="og:url" content="https://mrafiraamadhan.github.io/jelantah-terbang/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -113,6 +123,32 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font
 .badge-xl{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;font-weight:800;color:#fff;background:var(--green);flex:none}
 .swatch{width:52px;height:52px;border-radius:50%;margin-left:auto;border:1px solid var(--line);flex:none}
 .mb{position:absolute;top:0;bottom:0}
+.hero{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.ht{font-size:22px;line-height:1.3;margin:0}
+@media(min-width:760px){.ht{font-size:27px}}
+.cta{display:flex;gap:10px;flex-wrap:wrap}.cta .btn{width:auto;text-decoration:none;padding:12px 18px}
+.find3{display:flex;gap:10px;margin-top:10px;font-size:13.5px}.find3>span{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px;flex:none}
+.flow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.flow a,.who a{display:block;text-decoration:none;color:var(--ink);background:var(--bg);border-radius:12px;padding:10px}
+.flow i{font-style:normal;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;font-size:12px;font-weight:800;margin-bottom:4px}
+.flow b,.who b{display:block;font-size:14px}.flow span,.who span{font-size:12px;color:var(--muted)}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.prow{display:grid;grid-template-columns:84px 1fr 78px;gap:6px;align-items:center;font-size:12px;margin:6px 0}
+.prow em{font-style:normal;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.ptrack{position:relative;height:18px;background:var(--bg);border-radius:6px}
+.pbar{position:absolute;top:3px;height:12px;border-radius:6px;background:var(--green)}
+.pdot{position:absolute;top:2px;width:14px;height:14px;border-radius:50%;background:var(--blue);margin-left:-7px}
+.pval{position:absolute;top:0;font-size:11px;font-weight:700;white-space:nowrap}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin-bottom:12px;font-size:13.5px}
+.ctl input{grid-column:1/3;width:100%;accent-color:var(--green)}
+.kpi2{grid-template-columns:repeat(2,1fr)!important}.kpi2 .wide{grid-column:1/3;background:var(--green-2);border-color:#bfe3cc}
+.kpi2 b{font-size:19px}
+.road{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+@media(min-width:760px){.road{grid-template-columns:repeat(4,1fr)}}
+.road div{background:var(--bg);border-radius:12px;padding:10px;border-top:3px solid var(--blue)}
+.road i{font-style:normal;font-size:11px;color:var(--blue);font-weight:700}.road b{display:block;font-size:14px}.road span{font-size:12px;color:var(--muted)}
+.src{margin:6px 0 0;padding-left:20px;font-size:12.5px}.src li{margin-bottom:4px}
+#install{background:#fff;color:var(--blue);border:0;border-radius:10px;padding:8px 12px;font:700 12.5px inherit;font-family:inherit;cursor:pointer;flex:none}
 footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
 .hide{display:none!important}
 </style>
@@ -125,20 +161,76 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
    <div class="logo" aria-hidden="true">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2.5c3.6 4.4 6 7.8 6 11a6 6 0 0 1-12 0c0-3.2 2.4-6.6 6-11Z" fill="#e3b341" stroke="#1d5fa6" stroke-width="1.4"/><path d="M3 15.5 21 9.5" stroke="#1d5fa6" stroke-width="1.6" stroke-linecap="round"/><path d="m17.5 7.8 3.5 1.7-2.4 3" stroke="#1d5fa6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
    </div>
-   <div><h1>JELANTAH TERBANG</h1><p>Paspor digital berbasis AI bagi jelantah dapur MBG menuju bahan baku bioavtur bersertifikat</p></div>
+   <div style="flex:1"><h1>JELANTAH TERBANG</h1><p>Paspor digital berbasis AI bagi jelantah dapur MBG menuju bahan baku bioavtur bersertifikat</p></div>
+   <button id="install" class="hide" type="button">Pasang di ponsel</button>
   </div>
   <nav id="nav">
+   <a href="#beranda" data-t="beranda">Beranda</a>
    <a href="#catat" data-t="catat">1 · Catat</a>
    <a href="#mutu" data-t="mutu">2 · Mutu</a>
    <a href="#paspor" data-t="paspor">3 · Paspor</a>
    <a href="#dasbor" data-t="dasbor">4 · Dasbor</a>
    <a href="#verifikasi" data-t="verifikasi">5 · Verifikasi</a>
+   <a href="#dampak" data-t="dampak">Dampak</a>
    <a href="#tentang" data-t="tentang">Tentang</a>
   </nav>
  </div>
 </header>
 
 <main class="wrap">
+
+<!-- ============ BERANDA ============ -->
+<section id="beranda">
+ <div class="hero">
+  <div class="tag real" style="margin-bottom:8px">Track Energi · Subtema B</div>
+  <h2 class="ht">Jelantah dapur MBG bisa menjadi bahan bakar pesawat, asalkan punya dokumen asal yang bisa diaudit.</h2>
+  <p class="lead" style="margin:8px 0 14px">Kilang bioavtur bersertifikat mensyaratkan setiap titik asal jelantah menyatakan kemurnian limbahnya, mencatat jumlah kiriman, dan siap diaudit. Dapur MBG belum punya dokumen itu. JELANTAH TERBANG membuatnya dari foto timbangan yang sudah diambil petugas setiap hari.</p>
+  <div class="cta"><a class="btn" href="#catat">Coba alur petugas →</a><a class="btn sec" href="#dampak">Hitung dampaknya</a></div>
+ </div>
+ <div class="kpi" style="margin-top:14px">
+  <div><b>26.385</b><span>SPPG memenuhi syarat operasional <a href="#sumber">[1]</a></span></div>
+  <div><b>9–14 juta L</b><span>perkiraan jelantah MBG per bulan (estimasi tim)</span></div>
+  <div><b>1%</b><span>kewajiban campuran bioavtur mulai 2027 <a href="#sumber">[3]</a></span></div>
+  <div><b>Rp7.500–11.000</b><span>harga per kg di 6 SPPG yang kami survei, ditentukan pembeli</span></div>
+ </div>
+ <div class="cols">
+  <div>
+   <div class="card">
+    <b>Bukti lapangan: harga jelantah di 6 SPPG</b> <span class="tag real">survei 5–6 Nov 2026</span>
+    <div class="note" style="margin-bottom:6px">Rp per kg, dilaporkan kepala SPPG. Nama dapur disamarkan. Garis A menunjukkan dua pembeli dengan harga berbeda.</div>
+    <div id="pricechart"></div>
+    <div class="scale" style="margin:4px 84px 0 90px"><span>6.000</span><span>9.000</span><span>12.000</span></div>
+   </div>
+   <div class="card">
+    <b>Tiga temuan yang menjadi dasar solusi</b>
+    <div class="find3"><span>1</span><div><b>Harga tanpa patokan mutu.</b> Selisih harga hingga 47% antardapur; di dapur percontohan, pembeli pakan ternak membayar 37% lebih tinggi daripada pengepul. Hanya 2 dari 5 dapur yang pembelinya pernah menanyakan mutu atau asal.</div></div>
+    <div class="find3"><span>2</span><div><b>Pencatatan manual rawan salah.</b> Audit 76 foto timbangan menemukan salah ketik (5,15 kg tercatat 15,5 kg) dan tara galon yang dibulatkan. Tidak ada dapur yang memakai sistem pencatatan terpadu.</div></div>
+    <div class="find3"><span>3</span><div><b>Tujuan akhir tidak tercatat.</b> “Kurang tahu persis pengolahan akhirnya, karena sifatnya berantai, pengepul ke pengepul.” (pengepul mitra dapur percontohan)</div></div>
+   </div>
+  </div>
+  <div>
+   <div class="card">
+    <b>Cara kerja dalam satu menit</b>
+    <div class="flow">
+     <a href="#catat"><i>1</i><b>Foto timbangan</b><span>AI membaca berat dan mengurangkan tara wadah</span></a>
+     <a href="#mutu"><i>2</i><b>Foto mutu</b><span>Kejernihan dan warna memilah jalur bioavtur atau biodiesel</span></a>
+     <a href="#paspor"><i>3</i><b>Paspor ber-QR</b><span>Berat, mutu, asal, dan dokumen siap audit</span></a>
+     <a href="#verifikasi"><i>4</i><b>Serah terima</b><span>Pengepul dan kilang memindai QR yang sama</span></a>
+    </div>
+   </div>
+   <div class="card">
+    <b>Untuk siapa</b>
+    <div class="who">
+     <a href="#catat"><b>Petugas dapur</b><span>Tanpa alat baru; harga sesuai mutu</span></a>
+     <a href="#paspor"><b>Pengepul</b><span>Bahan baku siap disertifikasi</span></a>
+     <a href="#verifikasi"><b>Kilang dan auditor</b><span>Dokumen titik asal sesuai ISCC</span></a>
+     <a href="#dasbor"><b>BGN dan pemda</b><span>Laporan transparansi otomatis</span></a>
+    </div>
+   </div>
+   <div class="okbox"><b>Status: TKT 3, target TKT 6.</b> Diuji pada 76 foto nyata SPPG Murnisari Mande; uji coba 3 SPPG selama ≥ 8 minggu direncanakan Februari–April 2027. <a href="#tentang">Lihat peta jalan →</a></div>
+  </div>
+ </div>
+</section>
 
 <!-- ============ 1. CATAT ============ -->
 <section id="catat">
@@ -203,6 +295,7 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
     <div class="samples" id="samples"></div>
     <div class="note">Empat contoh di atas adalah gambar buatan untuk mencoba alat, bukan foto sampel. Untuk hasil nyata, pakai foto jelantah sendiri.</div>
     <label class="btn sec" style="margin-top:10px" for="mfile">Ambil / unggah foto jelantah</label>
+    <a class="note" href="kartu-acuan.pdf" style="display:block;margin-top:8px">Unduh kartu acuan siap cetak (PDF, A4 berisi 4 kartu)</a>
     <input type="file" id="mfile" accept="image/*" capture="environment" class="hide">
    </div>
    <div class="card">
@@ -277,10 +370,10 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
    </div>
    <div class="card">
     <b>Jejak kiriman</b>
-    <div class="chain" style="margin-top:10px">
-     <div class="node"><span class="dot">✓</span><div><b>Dapur</b> · SPPG Murnisari Mande<div class="note">Ditimbang dan difoto 24 Okt 2026, 20.28–20.32</div></div></div>
-     <div class="node"><span class="dot">✓</span><div><b>Pengepul</b> · pengepul lokal mitra dapur <span class="tag sim">simulasi</span><div class="note">Pengepul memindai QR saat menerima kiriman, sehingga berat yang dibayar sama dengan berat di paspor.</div></div></div>
-     <div class="node"><span class="dot gap">!</span><div><b>Tujuan akhir</b> · belum tercatat<div class="note">Saat ini jelantah berpindah antarpengepul tanpa dokumen. Inilah celah yang ditutup paspor: setiap pemindahan dipindai, sampai ke kilang bioavtur atau produsen biodiesel.</div></div></div>
+    <div class="chain" style="margin-top:10px" id="chain"></div>
+    <div class="row" style="margin-top:4px"><button class="btn sec" id="hand" type="button">Simulasikan: pengepul memindai QR</button></div>
+    <div class="note">Simulasi serah terima tersimpan sementara di peramban ini saja.</div>
+   </div>
     </div>
    </div>
   </div>
@@ -342,8 +435,39 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
   </div>
   <div class="card">
    <b>Sidik digital foto sumber</b>
-   <div class="note" style="margin-bottom:8px">Dihitung langsung di peramban Anda dari berkas foto (SHA-256). Jika satu piksel foto diubah, sidiknya berubah total, sehingga dokumen sumber tidak dapat diganti diam-diam.</div>
-   <table><thead><tr><th>Foto</th><th>SHA-256</th></tr></thead><tbody id="hashes"><tr><td colspan="2" class="note">Menghitung…</td></tr></tbody></table>
+   <div class="note" style="margin-bottom:8px">Dihitung langsung di peramban Anda dari berkas foto (SHA-256). Hasilnya dicocokkan dengan sidik yang tercatat di <a href="paspor/JT-MND-261024-01.json">berkas paspor</a>. Jika satu piksel foto diubah, sidiknya berubah total, sehingga dokumen sumber tidak dapat diganti diam-diam.</div>
+   <table><thead><tr><th>Foto</th><th>SHA-256 dihitung</th><th>Paspor</th></tr></thead><tbody id="hashes"><tr><td colspan="3" class="note">Menghitung…</td></tr></tbody></table>
+  </div>
+ </div>
+</section>
+
+<!-- ============ DAMPAK ============ -->
+<section id="dampak">
+ <h2>Kalkulator dampak dan model bisnis</h2>
+ <p class="lead">Geser asumsi untuk melihat dampak per tahun dari satu dapur percontohan sampai seluruh SPPG. Nilai awal memakai data SPPG Murnisari Mande.</p>
+ <div class="cols">
+  <div class="card">
+   <div class="ctl"><label for="dN">Jumlah SPPG</label><b id="vN"></b><input type="range" id="dN" min="0" max="9" step="1" value="9"></div>
+   <div class="ctl"><label for="dK">Jelantah per dapur per bulan</label><b id="vK"></b><input type="range" id="dK" min="100" max="600" step="10" value="300"></div>
+   <div class="ctl"><label for="dP">Harga dasar jelantah</label><b id="vP"></b><input type="range" id="dP" min="7000" max="11000" step="100" value="8000"></div>
+   <div class="ctl"><label for="dU">Tambahan harga karena mutu terverifikasi</label><b id="vU"></b><input type="range" id="dU" min="0" max="3000" step="100" value="1000"></div>
+   <div class="ctl"><label for="dF">Biaya verifikasi (dibayar pembeli)</label><b id="vF"></b><input type="range" id="dF" min="100" max="500" step="50" value="200"></div>
+   <div class="note">Tambahan harga adalah asumsi. Dasarnya: di dapur percontohan, pembeli langsung membayar Rp11.000/kg, sedangkan pengepul Rp8.000/kg. Dapur tidak dikenai biaya apa pun.</div>
+  </div>
+  <div>
+   <div class="kpi kpi2">
+    <div><b id="oT"></b><span>jelantah terverifikasi per tahun</span></div>
+    <div><b id="oV"></b><span>nilai jelantah per tahun</span></div>
+    <div><b id="oD"></b><span>tambahan pendapatan dapur per tahun</span></div>
+    <div><b id="oR"></b><span>pendapatan layanan verifikasi per tahun</span></div>
+    <div><b id="oE"></b><span>kandungan energi jelantah per tahun</span></div>
+    <div><b id="oS"></b><span>potensi bioavtur (SAF) jika diolah HEFA</span></div>
+    <div class="wide"><b id="oC"></b><span>emisi gas rumah kaca yang dapat dihindari per tahun bila SAF menggantikan avtur fosil</span></div>
+   </div>
+   <div class="card">
+    <b>Asumsi dan sumber</b>
+    <div class="note" style="margin-top:4px">Energi jelantah ±37 MJ/kg. Rendemen HEFA 0,83 t distilat per t bahan baku, dengan porsi SAF ±55%, sehingga ±0,46 t SAF per t jelantah (ICAO, perkiraan kasar) <a href="#sumber">[9]</a>. Nilai kalor SAF ±44 MJ/kg. Emisi siklus hidup SAF HEFA dari jelantah 13,9 gCO<sub>2</sub>e/MJ dibanding avtur fosil 89 gCO<sub>2</sub>e/MJ (nilai baku CORSIA) <a href="#sumber">[10]</a> <a href="#sumber">[11]</a>. Angka ini perkiraan orde besaran untuk perencanaan, bukan hasil audit.</div>
+   </div>
   </div>
  </div>
 </section>
@@ -371,9 +495,39 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
    </div>
    <div class="card">
     <b>Catatan data</b>
-    <div class="note">Data berasal dari SPPG Murnisari Mande, dapur percontohan tim; kepala SPPG adalah anggota tim. Nama pembeli tidak ditampilkan. Foto hanya menampilkan layar timbangan dan wadah. Nilai mutu dan rentang wajar neraca adalah contoh tampilan sampai kalibrasi selesai.</div>
+    <div class="note">Data berasal dari SPPG Murnisari Mande, dapur percontohan tim; kepala SPPG adalah anggota tim. Data lima SPPG pembanding disamarkan. Nama pembeli tidak ditampilkan. Foto hanya menampilkan layar timbangan dan wadah. Ambang kelas mutu dan rentang wajar neraca masih sementara sampai kalibrasi selesai.</div>
+   </div>
+   <div class="card">
+    <b>Untuk integrasi</b>
+    <div class="note" style="margin-top:4px">Struktur data paspor terbuka agar dapat dipetakan ke pernyataan titik asal ISCC dan laporan BGN: <a href="skema-paspor.json">skema-paspor.json</a> · contoh: <a href="paspor/JT-MND-261024-01.json">paspor JT-MND-261024-01</a> · <a href="https://github.com/mrafiraamadhan/jelantah-terbang">kode sumber</a>.</div>
    </div>
   </div>
+ </div>
+
+ <div class="card" style="margin-top:2px">
+  <b>Peta jalan TKT 3 → TKT 6 (November 2026 – Mei 2027)</b>
+  <div class="road">
+   <div><i>Nov–Des</i><b>Data dan model</b><span>Arsip foto berlabel, ≥ 40 sampel uji asam lemak bebas, model AI v1</span></div>
+   <div><i>Des–Feb</i><b>Aplikasi</b><span>Hackathon UNS; aplikasi ponsel, dasbor, paspor QR v1</span></div>
+   <div><i>Feb–Apr</i><b>Uji coba 3 SPPG</b><span>≥ 8 minggu termasuk Ramadan; target TKT 6</span></div>
+   <div><i>Mar–Mei</i><b>Tata kelola dan bisnis</b><span>Kajian regulasi dan syarat ISCC, perjanjian kerja sama, uji harga, mitra jalur energi</span></div>
+  </div>
+ </div>
+ <div class="card" id="sumber">
+  <b>Sumber</b>
+  <ol class="src">
+   <li><a href="https://investortrust.id/business/119795/26385-dapur-mbg-lolos-syarat-pemerintah-uji-coba-cctv-dan-ai">InvestorTrust (19 Okt 2026): 26.385 dapur MBG lolos syarat</a></li>
+   <li><a href="https://industri.kontan.co.id/news/pertamina-kumpulkan-minyak-jelantah-dari-sppg-hingga-kopdes-untuk-bahan-baku-saf">Kontan (11 Sep 2026): Pertamina kumpulkan jelantah dari SPPG hingga Kopdes untuk SAF</a></li>
+   <li><a href="https://ekonomi.bisnis.com/read/20260724/44/1990683/pertamina-genjot-ekosistem-bioavtur-jelang-mandatori-saf-1-mulai-2027">Bisnis.com (24 Jul 2026): mandatori SAF 1% mulai 2027</a></li>
+   <li><a href="https://finance.detik.com/energi/d-7726651/kilang-pertamina-internasional-siap-produksi-saf-tersertifikasi">detikFinance (10 Jan 2025): kilang Pertamina siap produksi SAF tersertifikasi</a></li>
+   <li><a href="https://www.rti-inc.com/wp-content/uploads/2025/05/ISCC-CORSIA-Self-Declaration-UCO.pdf">ISCC: CORSIA self-declaration for points of origin of used cooking oil</a></li>
+   <li><a href="https://www.metrotvnews.com/read/bzGCRM6D-nurhadi-ingatkan-penjualan-minyak-jelantah-dari-program-mbg-harus-transparan">Metro TV (26 Jun 2025): penjualan jelantah MBG harus transparan</a></li>
+   <li><a href="https://nasional.kontan.co.id/news/harga-minyak-jelantah-mbg-dihargai-rp-7000-per-liter-bgn-bisa-untuk-bioavtur">Kontan (17 Jun 2025): jelantah MBG dihargai Rp7.000/L</a></li>
+   <li>Udomkun, Innawong, &amp; Sopa (2019). Can the image processing technique be potentially used to evaluate quality of frying oil? <i>Journal of Food Quality</i>, 6580320.</li>
+   <li><a href="https://www.icao.int/SAF/saf-rules-of-thumb">ICAO: SAF rules of thumb</a></li>
+   <li><a href="https://www.icao.int/sites/default/files/sp-files/environmental-protection/CORSIA/Documents/ICAO%20document%2006%20-%20Default%20Life%20Cycle%20Emissions%20-%20November%202021.pdf">ICAO Document 06: CORSIA default life cycle emissions values</a></li>
+   <li><a href="https://www.icao.int/sites/default/files/sp-files/environmental-protection/CORSIA/Documents/CORSIA%20Leaflets/CorsiaLeaflet-EN-9-WEB.pdf">ICAO: CORSIA eligible fuels leaflet (nilai dasar avtur fosil)</a></li>
+  </ol>
  </div>
 </section>
 
@@ -395,11 +549,14 @@ let cur = 0; const done = new Set();
 
 // ---------- navigasi ----------
 function go() {
-  const t = (location.hash.slice(1).split('/')[0]) || 'catat';
-  document.querySelectorAll('section').forEach(s => s.classList.toggle('on', s.id === t));
+  let t = (location.hash.slice(1).split('/')[0]) || 'beranda', anchor = null;
+  if (t === 'sumber') { t = 'tentang'; anchor = 'sumber'; }
+  const el = document.getElementById(t); if (!el || el.tagName !== 'SECTION') t = 'beranda';
+  document.querySelectorAll('main > section').forEach(s => s.classList.toggle('on', s.id === t));
   document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.t === t));
+  const on = document.querySelector('#nav a.on'); if (on) on.scrollIntoView({ block: 'nearest', inline: 'center' });
   if (t === 'verifikasi') { const id = location.hash.split('/')[1]; if (id) { vid.value = decodeURIComponent(id); check(); } }
-  window.scrollTo(0, 0);
+  if (anchor) document.getElementById(anchor).scrollIntoView(); else window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', go);
 
@@ -471,31 +628,81 @@ catch (e) { document.getElementById('qr').innerHTML = '<div class="note" style="
 
 // ---------- verifikasi ----------
 const vid = document.getElementById('vid');
+let PASPOR = null, HASHES = null;
+const pasporP = fetch('paspor/JT-MND-261024-01.json').then(r => r.json()).then(j => (PASPOR = j)).catch(() => null);
+async function sha(url) { const buf = await (await fetch(url)).arrayBuffer(); const h = await crypto.subtle.digest('SHA-256', buf); return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); }
+async function hashes() {
+  await pasporP; const out = []; HASHES = [];
+  for (let i = 0; i < W.length; i++) {
+    try {
+      const hex = await sha(W[i].img), rec = PASPOR && PASPOR.timbangan[i] && PASPOR.timbangan[i].foto.sha256, okh = rec === hex;
+      HASHES.push(okh);
+      out.push(`<tr><td>${i + 1} · ${W[i].jam}</td><td class="mono">${hex}</td><td><b style="color:${okh ? 'var(--green)' : 'var(--red)'}">${okh ? '✓ cocok' : '✗ beda'}</b></td></tr>`);
+    } catch (e) { HASHES.push(false); out.push(`<tr><td>${i + 1}</td><td class="note" colspan="2">tidak dapat dihitung di peramban ini</td></tr>`); }
+  }
+  document.getElementById('hashes').innerHTML = out.join('');
+  if (/^#verifikasi/.test(location.hash)) check();
+}
 function check() {
   const id = vid.value.trim().toUpperCase();
-  if (id === 'JT-MND-261024-01') {
-    vout.innerHTML = `<div class="okbox"><b>✓ Paspor sah</b><br>SPPG Murnisari Mande · 24 Okt 2026 · 206,65 kg bersih · 16 galon · Rp8.000/kg<br>Dokumen sumber lengkap; sidik digital 4 foto tercantum di samping.</div>
-      <div class="note">Pemindahan berikutnya (pengepul → kilang) dicatat dengan memindai QR yang sama.</div>`;
+  if (PASPOR && id === PASPOR.id) {
+    const nOk = HASHES ? HASHES.filter(Boolean).length : 0, rantai = custody();
+    const step = rantai === 0 ? 'Diterbitkan dapur; menunggu pemindaian pengepul.' : rantai === 1 ? 'Diterima pengepul; tujuan akhir belum tercatat.' : 'Jejak lengkap sampai tujuan akhir.';
+    vout.innerHTML = `<div class="okbox"><b>✓ Paspor sah</b><br>${PASPOR.asal.sppg} · 24 Okt 2026 · ${fmt(PASPOR.total.berat_bersih_kg)} kg bersih · ${PASPOR.total.jumlah_wadah} galon · ${rp(PASPOR.harga_rp_per_kg)}/kg<br>Sidik digital foto: ${HASHES ? nOk + ' dari ' + W.length + ' cocok' : 'sedang dihitung'} · Pernyataan jelantah murni: ${PASPOR.pernyataan_jelantah_murni ? 'ada' : 'tidak ada'}<br>Jejak: ${step}</div>
+      <div class="note">Data dibaca dari berkas paspor (JSON) yang mengikuti <a href="skema-paspor.json">skema terbuka</a>. Serah terima berikutnya dicatat dengan memindai QR yang sama.</div>`;
   } else {
     vout.innerHTML = `<div class="warn"><b>Paspor tidak ditemukan</b><br>Periksa kembali nomor paspor. Jelantah tanpa paspor tidak dapat dihitung sebagai bahan baku bersertifikat.</div>`;
   }
 }
 vbtn.onclick = check;
 vid.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
-
-async function hashes() {
-  const out = [];
-  for (let i = 0; i < W.length; i++) {
-    try {
-      const buf = await (await fetch(W[i].img)).arrayBuffer();
-      const h = await crypto.subtle.digest('SHA-256', buf);
-      const hex = [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join('');
-      out.push(`<tr><td>${i + 1} · ${W[i].jam}</td><td class="mono">${hex}</td></tr>`);
-    } catch (e) { out.push(`<tr><td>${i + 1}</td><td class="note">tidak dapat dihitung di peramban ini</td></tr>`); }
-  }
-  document.getElementById('hashes').innerHTML = out.join('');
-}
 hashes();
+
+// ---------- paspor: serah terima (simulasi, disimpan di peramban) ----------
+const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+let RANTAI = Math.min(2, Math.max(0, parseInt(store.get('jt-rantai') || '0', 10) || 0));
+function custody() { return RANTAI; }
+function drawChain() {
+  const n = (ok, gap, t, sub, tag) => `<div class="node"><span class="dot${ok ? '' : gap ? ' gap' : ' wait'}">${ok ? '✓' : gap ? '!' : '…'}</span><div>${t}${tag ? ' <span class="tag sim">simulasi</span>' : ''}<div class="note">${sub}</div></div></div>`;
+  chain.innerHTML =
+    n(true, false, '<b>Dapur</b> · SPPG Murnisari Mande', 'Ditimbang dan difoto 24 Okt 2026, 20.28–20.32 · 206,65 kg') +
+    (RANTAI >= 1 ? n(true, false, '<b>Pengepul</b> · pengepul lokal mitra dapur', 'QR dipindai saat menerima: 206,65 kg, sesuai paspor; pembayaran memakai berat ini.', true)
+                 : n(false, false, '<b>Pengepul</b> · menunggu pemindaian', 'Pengepul memindai QR saat menerima kiriman.')) +
+    (RANTAI >= 2 ? n(true, false, '<b>Tujuan akhir</b> · produsen biodiesel atau kilang bioavtur', 'Diterima dengan dokumen titik asal lengkap. Celah jejak tertutup: jelantah dapat dihitung sebagai bahan baku bersertifikat.', true)
+                 : n(false, true, '<b>Tujuan akhir</b> · belum tercatat', 'Saat ini jelantah berpindah antarpengepul tanpa dokumen. Inilah celah yang ditutup paspor.'));
+  hand.textContent = RANTAI === 0 ? 'Simulasikan: pengepul memindai QR' : RANTAI === 1 ? 'Simulasikan: kilang atau produsen biodiesel menerima' : 'Ulangi simulasi';
+}
+hand.onclick = () => { RANTAI = RANTAI >= 2 ? 0 : RANTAI + 1; store.set('jt-rantai', String(RANTAI)); drawChain(); };
+drawChain();
+
+// ---------- beranda: grafik harga 6 SPPG ----------
+const PRICES = [['A · percontohan', 8000, 11000], ['B', 7700], ['C', 7500], ['D', 9000], ['E', 9000], ['F', 10300]];
+const px = (v) => ((v - 6000) / 6000 * 100).toFixed(1) + '%';
+pricechart.innerHTML = PRICES.map(([n, a, b]) => `<div class="prow"><span>SPPG ${n}</span><div class="ptrack">${b ? `<div class="pbar" style="left:${px(a)};width:calc(${px(b)} - ${px(a)})"></div><div class="pdot" style="left:${px(a)}"></div><div class="pdot" style="left:${px(b)}"></div>` : `<div class="pdot" style="left:${px(a)}"></div>`}</div><em>${rp(a).slice(2)}${b ? '–' + rp(b).slice(2) : ''}</em></div>`).join('');
+
+// ---------- dampak ----------
+const NS = [1, 3, 10, 100, 500, 1000, 5000, 10000, 20000, 26385];
+const big = (x) => x >= 1e12 ? fmt(x / 1e12, 1) + ' triliun' : x >= 1e9 ? fmt(x / 1e9, 1) + ' miliar' : x >= 1e6 ? fmt(x / 1e6, 1) + ' juta' : x >= 1e3 ? fmt(x / 1e3, 1) + ' ribu' : fmt(x, 0);
+function dampakCalc() {
+  const N = NS[+dN.value], K = +dK.value, P = +dP.value, U = +dU.value, F = +dF.value;
+  vN.textContent = N.toLocaleString('id-ID') + (N === 26385 ? ' (seluruh SPPG)' : N === 3 ? ' (uji coba)' : N === 1 ? ' (percontohan)' : '');
+  vK.textContent = K + ' kg'; vP.textContent = rp(P) + '/kg'; vU.textContent = '+' + rp(U) + '/kg'; vF.textContent = rp(F) + '/kg';
+  const kg = N * K * 12, t = kg / 1000;
+  oT.textContent = (t >= 1000 ? fmt(t / 1000, 1) + ' ribu ton' : fmt(t, 1) + ' ton');
+  oV.textContent = 'Rp' + big(kg * (P + U));
+  oD.textContent = 'Rp' + big(kg * U);
+  oR.textContent = 'Rp' + big(kg * F);
+  const GJ = kg * 37 / 1000; oE.textContent = GJ >= 1e6 ? fmt(GJ / 1e6, 2) + ' PJ' : GJ >= 1e3 ? fmt(GJ / 1e3, 1) + ' TJ' : fmt(GJ, 0) + ' GJ';
+  const saf = t * 0.46; oS.textContent = (saf >= 1000 ? fmt(saf / 1000, 1) + ' ribu ton' : fmt(saf, 1) + ' ton') + ' SAF';
+  const co2 = saf * 44000 * (89 - 13.9) / 1e6; oC.textContent = (co2 >= 1000 ? fmt(co2 / 1000, 1) + ' ribu ton' : fmt(co2, 1) + ' ton') + ' CO₂e';
+}
+[dN, dK, dP, dU, dF].forEach(x => x.addEventListener('input', dampakCalc)); dampakCalc();
+
+// ---------- PWA ----------
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; install.classList.remove('hide'); });
+install.onclick = async () => { if (!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; install.classList.add('hide'); };
 // ---------- mutu: pengolahan citra di peramban ----------
 const mcv = document.getElementById('mcv'), mctx = mcv.getContext('2d', { willReadFrequently: true });
 let mpts = [], msrcLabel = 'contoh';
