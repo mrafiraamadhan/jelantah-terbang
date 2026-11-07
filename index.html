@@ -104,12 +104,21 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font
 .cardref{width:150px;height:96px;border-radius:10px;flex:none;background:linear-gradient(90deg,#f7e9a8,#e9c35a,#c98a2c,#8a5216,#4a2a0c);position:relative;border:1px solid #c9b27a}
 .cardref i{position:absolute;width:30px;height:22px;border-radius:50%;top:36px;left:30px;background:radial-gradient(circle at 40% 35%,#fff7c8,#e6c25a 60%,#b98d2c);box-shadow:0 1px 3px rgba(0,0,0,.35)}
 .cardref small{position:absolute;bottom:4px;left:6px;right:6px;display:flex;justify-content:space-between;font-size:9px;color:#3b2a10;font-weight:700}
+.samples{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:520px){.samples{grid-template-columns:repeat(4,1fr)}}
+.samples button{border:2px solid var(--line);border-radius:12px;background:#fff;padding:4px;cursor:pointer;font:600 12px inherit;font-family:inherit;color:var(--ink)}
+.samples button.sel{border-color:var(--blue)}
+.samples canvas{width:100%;border-radius:8px;display:block;margin-bottom:4px}
+.mgrade{display:flex;align-items:center;gap:12px;margin-top:10px}
+.badge-xl{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;font-weight:800;color:#fff;background:var(--green);flex:none}
+.swatch{width:52px;height:52px;border-radius:50%;margin-left:auto;border:1px solid var(--line);flex:none}
+.mb{position:absolute;top:0;bottom:0}
 footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
 .hide{display:none!important}
 </style>
 </head>
 <body>
-<div class="ribbon"><b>Purwarupa (simulasi).</b> Angka berat, wadah, waktu, dan harga adalah data nyata SPPG Murnisari Mande. Hasil "baca AI" diambil dari uji awal pada 76 foto; nilai mutu adalah contoh tampilan.</div>
+<div class="ribbon"><b>Purwarupa (simulasi).</b> Angka berat, wadah, waktu, dan harga adalah data nyata SPPG Murnisari Mande. Hasil "baca AI" timbangan diambil dari uji awal pada 76 foto. Uji mutu warna dan kejernihan dihitung langsung di peramban dengan ambang kelas sementara.</div>
 <header>
  <div class="wrap">
   <div class="brand">
@@ -120,9 +129,10 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
   </div>
   <nav id="nav">
    <a href="#catat" data-t="catat">1 · Catat</a>
-   <a href="#paspor" data-t="paspor">2 · Paspor</a>
-   <a href="#dasbor" data-t="dasbor">3 · Dasbor</a>
-   <a href="#verifikasi" data-t="verifikasi">4 · Verifikasi</a>
+   <a href="#mutu" data-t="mutu">2 · Mutu</a>
+   <a href="#paspor" data-t="paspor">3 · Paspor</a>
+   <a href="#dasbor" data-t="dasbor">4 · Dasbor</a>
+   <a href="#verifikasi" data-t="verifikasi">5 · Verifikasi</a>
    <a href="#tentang" data-t="tentang">Tentang</a>
   </nav>
  </div>
@@ -158,13 +168,13 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
     <div class="line"><span>Berat bersih</span><b id="rnet" style="color:var(--blue);font-size:18px"></b></div>
     <div class="warn" style="margin-top:10px" id="rwarn"></div>
    </div>
-   <div class="card" id="mutu">
-    <div style="display:flex;justify-content:space-between;align-items:center"><b>Mutu jelantah</b><span class="tag sim">contoh tampilan</span></div>
+   <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center"><b>Mutu jelantah</b><span class="tag real">berjalan di peramban</span></div>
     <div class="drop" style="margin-top:10px">
      <div class="cardref" aria-hidden="true"><i></i><small><span>jernih</span><span>gelap</span></small></div>
      <div>
-      <div class="v">Jalur: bioavtur</div>
-      <div class="note">Petugas memotret satu tetesan minyak di atas kartu acuan warna. Model menaksir kadar asam lemak bebas dari warna dan sudut kontak tetesan, lalu memilah jalur bioavtur, biodiesel, atau nonenergi. Kalibrasi dengan titrasi dijadwalkan November–Desember 2026.</div>
+      <div class="note" style="margin-top:0">Setelah menimbang, petugas memotret sedikit jelantah di atas kartu acuan putih. Sistem mengukur kejernihan dan warna minyak untuk memilah jalur bioavtur, biodiesel, atau nonenergi.</div>
+      <a class="btn sec" href="#mutu" style="margin-top:10px;text-decoration:none">Coba uji mutu →</a>
      </div>
     </div>
    </div>
@@ -182,7 +192,53 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
  </div>
 </section>
 
-<!-- ============ 2. PASPOR ============ -->
+<!-- ============ 2. MUTU ============ -->
+<section id="mutu">
+ <h2>Uji mutu: kejernihan dan warna jelantah</h2>
+ <p class="lead">Tuang sedikit jelantah ke tutup galon atau wadah bening di atas kertas putih (kartu acuan), lalu foto dari atas dengan cahaya cukup. Pengolahan citra berjalan langsung di peramban Anda; foto tidak dikirim ke mana pun.</p>
+ <div class="cols">
+  <div>
+   <div class="card">
+    <div class="k" style="margin-bottom:8px">Pilih contoh atau pakai foto sendiri</div>
+    <div class="samples" id="samples"></div>
+    <div class="note">Empat contoh di atas adalah gambar buatan untuk mencoba alat, bukan foto sampel. Untuk hasil nyata, pakai foto jelantah sendiri.</div>
+    <label class="btn sec" style="margin-top:10px" for="mfile">Ambil / unggah foto jelantah</label>
+    <input type="file" id="mfile" accept="image/*" capture="environment" class="hide">
+   </div>
+   <div class="card">
+    <div class="k" id="mstep" style="margin-bottom:8px">Ketuk bagian <b>minyak</b> pada foto.</div>
+    <canvas id="mcv" width="600" height="450" style="width:100%;border-radius:12px;display:block;background:#eee;touch-action:manipulation;cursor:crosshair"></canvas>
+    <div class="row" style="margin-top:8px"><button class="btn sec" id="mreset" type="button">Ulangi penandaan</button></div>
+    <div class="note">Titik 1: minyak · titik 2: kertas putih di luar minyak (acuan cahaya dan warna putih).</div>
+   </div>
+  </div>
+  <div>
+   <div class="card res" id="mres">
+    <div style="display:flex;justify-content:space-between;align-items:center"><b>Hasil uji mutu</b><span class="tag" id="msrc">contoh</span></div>
+    <div class="mgrade">
+     <div class="badge-xl" id="mbadge">A</div>
+     <div><div class="v" id="mclass">Jernih</div><div class="k" id="mroute">Jalur: kandidat bioavtur</div></div>
+     <div class="swatch" id="mswatch" title="Warna minyak setelah dinormalkan terhadap kertas putih"></div>
+    </div>
+    <div class="k" style="font-weight:700;color:var(--ink);margin-top:12px">Kejernihan (cahaya yang menembus minyak)</div>
+    <div class="gauge" style="margin-top:6px"><div class="mb" style="left:0;width:35%;background:#f3d1c8"></div><div class="mb" style="left:35%;width:25%;background:#f6e3b4"></div><div class="mb" style="left:60%;width:40%;background:#bfe3cc"></div><div class="mark" id="mmark" style="left:0"></div></div>
+    <div class="scale"><span>0%</span><span>C &lt;35 · B 35–60 · A ≥60</span><span>100%</span></div>
+    <div class="line" style="margin-top:8px"><span>Kejernihan relatif</span><b id="mT"></b></div>
+    <div class="line"><span>Kecerahan L*</span><b id="mL"></b></div>
+    <div class="line"><span>Kekuningan b* · sudut warna h°</span><b id="mB"></b></div>
+    <div class="line"><span>Partikel/endapan (keragaman piksel)</span><b id="mCV"></b></div>
+    <div class="line"><span>Taksiran asam lemak bebas</span><b style="color:var(--muted)">menunggu kalibrasi</b></div>
+    <div class="warn" style="margin-top:10px"><b>Ambang kelas masih sementara.</b> Batas A/B/C ditetapkan ulang dari uji titrasi asam lemak bebas pada ≥ 40 sampel (target R² ≥ 0,85). Hasil ini menyaring jalur, bukan menggantikan uji laboratorium.</div>
+   </div>
+   <div class="card">
+    <b>Cara kerja</b>
+    <div class="note" style="margin-top:4px">1. Warna rata-rata di sekitar tiap titik dihitung dalam ruang warna linear.<br>2. Warna minyak dinormalkan terhadap kertas putih, sehingga hasil tidak bergantung pada lampu dan kamera.<br>3. Kejernihan = luminans minyak dibanding luminans kertas (cahaya yang menembus lapisan minyak). Warna diubah ke CIELAB (L*, a*, b*).<br>4. Keragaman piksel di area minyak menandai partikel atau endapan.<br>Pendekatan warna untuk menilai minyak goreng bekas mengikuti Udomkun dkk. (2019, <i>Journal of Food Quality</i>).</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ============ 3. PASPOR ============ -->
 <section id="paspor">
  <h2>Paspor kiriman jelantah</h2>
  <p class="lead">Satu paspor ber-QR untuk setiap kiriman. QR membuka halaman verifikasi yang dapat diperiksa pengumpul, kilang, auditor, atau BGN.</p>
@@ -299,7 +355,7 @@ footer{color:var(--muted);font-size:12.5px;padding:0 16px 30px}
   <div class="card">
    <p style="margin-top:0"><b>Masalah.</b> Dapur MBG menghasilkan jelantah dalam jumlah besar, tetapi beratnya dicatat manual, mutunya tidak diukur, dan tujuan akhirnya tidak tercatat. Akibatnya jelantah tidak dapat dihitung sebagai bahan baku bioavtur bersertifikat, dan harganya ditentukan pengepul.</p>
    <p><b>Solusi.</b> Paspor digital: petugas memotret timbangan seperti biasa; AI membaca berat, mengenali wadah untuk mengurangkan tara, menilai mutu, dan memeriksa kewajaran jumlah dengan neraca massa. Setiap kiriman memperoleh paspor ber-QR siap audit.</p>
-   <p style="margin-bottom:0"><b>Status.</b> TKT 3 (bukti konsep). Pembacaan berat dan neraca massa telah diuji pada 76 foto nyata. Halaman ini adalah purwarupa antarmuka: hasil baca AI ditampilkan dari uji tersebut, belum dari model yang berjalan langsung. Target: TKT 6, sistem utuh teruji di tiga SPPG selama minimal 8 minggu.</p>
+   <p style="margin-bottom:0"><b>Status.</b> TKT 3 (bukti konsep). Pembacaan berat dan neraca massa telah diuji pada 76 foto nyata. Halaman ini adalah purwarupa antarmuka: hasil baca AI timbangan ditampilkan dari uji tersebut, belum dari model yang berjalan langsung. Uji mutu (kejernihan dan warna) sudah berjalan langsung di peramban dengan pengolahan citra; ambang kelasnya ditetapkan setelah kalibrasi titrasi. Target: TKT 6, sistem utuh teruji di tiga SPPG selama minimal 8 minggu.</p>
   </div>
   <div>
    <div class="card">
@@ -440,6 +496,106 @@ async function hashes() {
   document.getElementById('hashes').innerHTML = out.join('');
 }
 hashes();
+// ---------- mutu: pengolahan citra di peramban ----------
+const mcv = document.getElementById('mcv'), mctx = mcv.getContext('2d', { willReadFrequently: true });
+let mpts = [], msrcLabel = 'contoh';
+const SAMPLES = [
+  { name: 'Minyak baru', T: [0.97, 0.92, 0.60], sp: 0 },
+  { name: 'Jelantah sekali pakai', T: [0.93, 0.74, 0.34], sp: 0.002 },
+  { name: 'Jelantah 2–3 kali pakai', T: [0.78, 0.48, 0.14], sp: 0.008 },
+  { name: 'Jelantah berulang', T: [0.42, 0.22, 0.07], sp: 0.02 },
+];
+function drawSample(ctx, w, h, smp, seed) {
+  let r = seed || 7; const rnd = () => (r = (r * 16807) % 2147483647) / 2147483647;
+  const g = ctx.createRadialGradient(w * .45, h * .4, 10, w * .5, h * .5, w * .75);
+  g.addColorStop(0, 'rgb(248,246,241)'); g.addColorStop(1, 'rgb(222,219,212)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = 'rgba(40,40,40,.55)'; ctx.font = `${Math.round(w / 34)}px sans-serif`; ctx.fillText('KARTU ACUAN · JELANTAH TERBANG', w * .05, h * .1);
+  for (let i = 0; i < 6; i++) { const v = Math.round(40 + i * 40); ctx.fillStyle = `rgb(${v},${v},${v})`; ctx.fillRect(w * .05 + i * w * .06, h * .86, w * .06, h * .06); }
+  const cx = w * .56, cy = h * .5, rx = w * .27, ry = h * .3;
+  const img = ctx.getImageData(0, 0, w, h), d = img.data;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const q = ((x - cx) / rx) ** 2 + ((y - cy) / ry) ** 2; if (q > 1) continue;
+    const k = (y * w + x) * 4, edge = q > .9 ? .85 : 1;
+    for (let c = 0; c < 3; c++) d[k + c] = d[k + c] * Math.pow(smp.T[c] * edge, 1 / 2.2); // transmitansi linear
+    if (smp.sp && rnd() < smp.sp) { d[k] *= .35; d[k + 1] *= .3; d[k + 2] *= .3; }
+  }
+  ctx.putImageData(img, 0, 0);
+  ctx.fillStyle = 'rgba(255,255,255,.35)'; ctx.beginPath(); ctx.ellipse(cx - rx * .35, cy - ry * .45, rx * .18, ry * .08, -.4, 0, 7); ctx.fill();
+  return { oil: [cx + rx * .15, cy + ry * .1], white: [w * .13, h * .45] };
+}
+const samplesEl = document.getElementById('samples');
+SAMPLES.forEach((smp, i) => {
+  const b = document.createElement('button'); b.type = 'button';
+  const c = document.createElement('canvas'); c.width = 160; c.height = 120; drawSample(c.getContext('2d'), 160, 120, smp, 11 + i);
+  b.appendChild(c); b.appendChild(document.createTextNode(smp.name)); b.onclick = () => loadSample(i);
+  samplesEl.appendChild(b);
+});
+function loadSample(i) {
+  [...samplesEl.children].forEach((c, k) => c.classList.toggle('sel', k === i));
+  mcv.width = 600; mcv.height = 450;
+  const pts = drawSample(mctx, 600, 450, SAMPLES[i], 11 + i);
+  mbase = mctx.getImageData(0, 0, 600, 450); msrcLabel = 'contoh sintetis'; mpts = [pts.oil, pts.white]; analyze();
+}
+let mbase = null;
+document.getElementById('mfile').onchange = (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  const im = new Image(); im.onload = () => {
+    const W = 600, H = Math.round(im.height * W / im.width); mcv.width = W; mcv.height = H;
+    mctx.drawImage(im, 0, 0, W, H); mbase = mctx.getImageData(0, 0, W, H); URL.revokeObjectURL(im.src);
+    [...samplesEl.children].forEach(c => c.classList.remove('sel'));
+    msrcLabel = 'foto Anda'; mpts = []; mres.classList.remove('on'); mstepTxt();
+  };
+  im.src = URL.createObjectURL(f);
+};
+function mstepTxt() { mstep.innerHTML = mpts.length === 0 ? 'Ketuk bagian <b>minyak</b> pada foto.' : mpts.length === 1 ? 'Ketuk <b>kertas putih</b> di luar minyak.' : 'Selesai. Ketuk ulang untuk menandai titik baru.'; }
+mcv.addEventListener('click', (e) => {
+  if (!mbase) return;
+  const r = mcv.getBoundingClientRect(), x = (e.clientX - r.left) * mcv.width / r.width, y = (e.clientY - r.top) * mcv.height / r.height;
+  if (mpts.length >= 2) mpts = [];
+  mpts.push([x, y]); redraw(); mstepTxt();
+  if (mpts.length === 2) analyze();
+});
+mreset.onclick = () => { mpts = []; redraw(); mstepTxt(); mres.classList.remove('on'); };
+function redraw() {
+  if (!mbase) return; mctx.putImageData(mbase, 0, 0);
+  const R = rad();
+  mpts.forEach((p, i) => { mctx.lineWidth = 3; mctx.strokeStyle = i ? '#1d5fa6' : '#2e7d4f'; mctx.beginPath(); mctx.arc(p[0], p[1], R, 0, 7); mctx.stroke();
+    mctx.fillStyle = i ? '#1d5fa6' : '#2e7d4f'; mctx.font = 'bold 16px sans-serif'; mctx.fillText(i ? '2 · putih' : '1 · minyak', p[0] + R + 4, p[1] + 5); });
+}
+const rad = () => Math.max(8, Math.round(mcv.width * 0.035));
+const lin = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+function sample(p) {
+  const R = rad(), d = mbase.data, W = mbase.width, H = mbase.height; let n = 0, s = [0, 0, 0], ys = [];
+  for (let y = Math.max(0, Math.round(p[1] - R)); y < Math.min(H, p[1] + R); y++) for (let x = Math.max(0, Math.round(p[0] - R)); x < Math.min(W, p[0] + R); x++) {
+    if ((x - p[0]) ** 2 + (y - p[1]) ** 2 > R * R) continue;
+    const k = (y * W + x) * 4, c = [lin(d[k]), lin(d[k + 1]), lin(d[k + 2])];
+    s[0] += c[0]; s[1] += c[1]; s[2] += c[2]; n++; ys.push(0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]);
+  }
+  const m = s.map(v => v / n), my = ys.reduce((a, b) => a + b, 0) / n, sd = Math.sqrt(ys.reduce((a, b) => a + (b - my) ** 2, 0) / n);
+  return { m, cv: my > 0 ? sd / my : 0 };
+}
+function analyze() {
+  redraw();
+  const o = sample(mpts[0]), w = sample(mpts[1]);
+  const t = o.m.map((v, i) => Math.min(1, v / Math.max(w.m[i], 1e-4)));
+  const X = 0.4124 * t[0] + 0.3576 * t[1] + 0.1805 * t[2], Y = 0.2126 * t[0] + 0.7152 * t[1] + 0.0722 * t[2], Z = 0.0193 * t[0] + 0.1192 * t[1] + 0.9505 * t[2];
+  const f = (u) => u > 0.008856 ? Math.cbrt(u) : 7.787 * u + 16 / 116;
+  const fx = f(X / 0.9505), fy = f(Y), fz = f(Z / 1.089);
+  const L = 116 * fy - 16, a = 500 * (fx - fy), b = 200 * (fy - fz), h = (Math.atan2(b, a) * 180 / Math.PI + 360) % 360;
+  const T = Y * 100;
+  const cls = T >= 60 ? ['A', 'Jernih', 'Jalur: kandidat bioavtur', '#2e7d4f'] : T >= 35 ? ['B', 'Sedang', 'Jalur: biodiesel', '#a15c00'] : ['C', 'Gelap atau keruh', 'Jalur: nonenergi atau uji laboratorium', '#b3261e'];
+  mbadge.textContent = cls[0]; mbadge.style.background = cls[3]; mclass.textContent = cls[1]; mroute.textContent = cls[2];
+  const enc = (v) => Math.round(255 * (v <= 0.0031308 ? 12.92 * v : 1.055 * v ** (1 / 2.4) - 0.055));
+  mswatch.style.background = `rgb(${enc(t[0])},${enc(t[1])},${enc(t[2])})`;
+  mmark.style.left = `calc(${Math.min(99, Math.max(0, T)).toFixed(1)}% - 2px)`;
+  mT.textContent = fmt(T, 0) + '%'; mL.textContent = fmt(L, 1); mB.textContent = fmt(b, 1) + ' · ' + fmt(h, 0) + '°';
+  mCV.textContent = o.cv < 0.06 ? 'rendah' : o.cv < 0.15 ? 'sedang' : 'tinggi'; mCV.title = 'koefisien variasi ' + fmt(o.cv, 3);
+  msrc.textContent = msrcLabel; msrc.className = 'tag ' + (msrcLabel === 'foto Anda' ? 'real' : 'sim');
+  mres.classList.add('on'); mstepTxt();
+}
+loadSample(1);
+
 go();
 </script>
 </body>
