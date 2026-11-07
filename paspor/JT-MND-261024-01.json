@@ -11,21 +11,116 @@
   },
   "tanggal": "2026-10-24",
   "timbangan": [
-    { "urutan": 1, "waktu": "2026-10-24T20:28:00+07:00", "berat_layar_kg": 55.30, "wadah": { "jenis": "galon", "jumlah": 4, "tara_per_wadah_kg": 0.45 }, "berat_bersih_kg": 53.50, "foto": { "berkas": "t1.jpg", "sha256": "20d93f12ade4e80dc7896e6e41690fbbc6e6b3b86efe4a337142d67ce4535f06" } },
-    { "urutan": 2, "waktu": "2026-10-24T20:29:00+07:00", "berat_layar_kg": 55.10, "wadah": { "jenis": "galon", "jumlah": 4, "tara_per_wadah_kg": 0.45 }, "berat_bersih_kg": 53.30, "foto": { "berkas": "t2.jpg", "sha256": "1fda15aa3b0d8ffc9d9f13aeb584be4162aa6018b5816d06418932b54a683f06" } },
-    { "urutan": 3, "waktu": "2026-10-24T20:30:00+07:00", "berat_layar_kg": 55.65, "wadah": { "jenis": "galon", "jumlah": 4, "tara_per_wadah_kg": 0.45 }, "berat_bersih_kg": 53.85, "foto": { "berkas": "t3.jpg", "sha256": "5b17c109fd3f8ddc239b0ef00e3df4efe26ff868074b63b9466941ea5677dddc" } },
-    { "urutan": 4, "waktu": "2026-10-24T20:32:00+07:00", "berat_layar_kg": 47.80, "wadah": { "jenis": "galon", "jumlah": 4, "tara_per_wadah_kg": 0.45 }, "berat_bersih_kg": 46.00, "foto": { "berkas": "t4.jpg", "sha256": "a63d8ddec1b7448e90c5293d0e4175df29d163019c024282ea586c9ed44d1374" } }
+    {
+      "urutan": 1,
+      "waktu": "2026-10-24T20:28:00+07:00",
+      "berat_layar_kg": 55.3,
+      "wadah": {
+        "jenis": "galon",
+        "jumlah": 4,
+        "tara_per_wadah_kg": 0.45
+      },
+      "berat_bersih_kg": 53.5,
+      "foto": {
+        "berkas": "t1.jpg",
+        "sha256": "20d93f12ade4e80dc7896e6e41690fbbc6e6b3b86efe4a337142d67ce4535f06"
+      }
+    },
+    {
+      "urutan": 2,
+      "waktu": "2026-10-24T20:29:00+07:00",
+      "berat_layar_kg": 55.1,
+      "wadah": {
+        "jenis": "galon",
+        "jumlah": 4,
+        "tara_per_wadah_kg": 0.45
+      },
+      "berat_bersih_kg": 53.3,
+      "foto": {
+        "berkas": "t2.jpg",
+        "sha256": "1fda15aa3b0d8ffc9d9f13aeb584be4162aa6018b5816d06418932b54a683f06"
+      }
+    },
+    {
+      "urutan": 3,
+      "waktu": "2026-10-24T20:30:00+07:00",
+      "berat_layar_kg": 55.65,
+      "wadah": {
+        "jenis": "galon",
+        "jumlah": 4,
+        "tara_per_wadah_kg": 0.45
+      },
+      "berat_bersih_kg": 53.85,
+      "foto": {
+        "berkas": "t3.jpg",
+        "sha256": "5b17c109fd3f8ddc239b0ef00e3df4efe26ff868074b63b9466941ea5677dddc"
+      }
+    },
+    {
+      "urutan": 4,
+      "waktu": "2026-10-24T20:32:00+07:00",
+      "berat_layar_kg": 47.8,
+      "wadah": {
+        "jenis": "galon",
+        "jumlah": 4,
+        "tara_per_wadah_kg": 0.45
+      },
+      "berat_bersih_kg": 46.0,
+      "foto": {
+        "berkas": "t4.jpg",
+        "sha256": "a63d8ddec1b7448e90c5293d0e4175df29d163019c024282ea586c9ed44d1374"
+      }
+    }
   ],
-  "total": { "jumlah_wadah": 16, "berat_kotor_kg": 213.85, "tara_kg": 7.20, "berat_bersih_kg": 206.65, "catatan_manual_kg": 205.85 },
-  "mutu": { "kelas": null, "jalur": null, "kejernihan_persen": null, "alb_persen": null, "metode": "citra di atas kartu acuan; kalibrasi titrasi belum dilakukan", "catatan": "nilai mutu pada tampilan purwarupa adalah contoh" },
+  "total": {
+    "jumlah_wadah": 16,
+    "berat_kotor_kg": 213.85,
+    "tara_kg": 7.2,
+    "berat_bersih_kg": 206.65,
+    "catatan_manual_kg": 205.85
+  },
+  "mutu": {
+    "kelas": null,
+    "tindakan": null,
+    "kejernihan_persen": null,
+    "alb_persen": null,
+    "miu_persen": null,
+    "metode": "citra di atas kartu acuan; kalibrasi titrasi belum dilakukan",
+    "catatan": "nilai mutu pada tampilan purwarupa adalah contoh"
+  },
   "harga_rp_per_kg": 8000,
   "nilai_rp": 1653200,
   "pernyataan_jelantah_murni": true,
-  "neraca_massa": { "periode": "2026-10", "minyak_dibeli_l": "1000-1200", "rasio_jelantah_minyak": 0.30, "status": "wajar (rentang sementara 25-40%)" },
+  "neraca_massa": {
+    "periode": "2026-10",
+    "minyak_dibeli_l": "1000-1200",
+    "rasio_jelantah_minyak": 0.3,
+    "status": "wajar (rentang sementara 25-40%)"
+  },
   "rantai": [
-    { "peran": "dapur", "pihak": "SPPG Murnisari Mande", "waktu": "2026-10-24T20:32:00+07:00", "berat_kg": 206.65 },
-    { "peran": "pengepul", "pihak": "pengepul lokal mitra dapur", "waktu": null, "berat_kg": null, "catatan": "penerimaan dipindai saat uji coba" },
-    { "peran": "tujuan_akhir", "pihak": null, "waktu": null, "berat_kg": null, "catatan": "kilang bioavtur atau produsen biodiesel; saat ini belum tercatat" }
+    {
+      "peran": "dapur",
+      "pihak": "SPPG Murnisari Mande",
+      "waktu": "2026-10-24T20:32:00+07:00",
+      "berat_kg": 206.65
+    },
+    {
+      "peran": "pengepul",
+      "pihak": "pengepul lokal mitra dapur",
+      "waktu": null,
+      "berat_kg": null,
+      "catatan": "penerimaan dipindai saat uji coba"
+    },
+    {
+      "peran": "tujuan_akhir",
+      "pihak": null,
+      "waktu": null,
+      "berat_kg": null,
+      "catatan": "kilang bioavtur atau produsen biodiesel; saat ini belum tercatat"
+    }
   ],
-  "iscc": { "pernyataan_titik_asal": true, "catatan": "mengikuti isi formulir ISCC CORSIA self-declaration for points of origin of used cooking oil" }
+  "iscc": {
+    "pernyataan_titik_asal": true,
+    "catatan": "mengikuti isi formulir ISCC CORSIA self-declaration for points of origin of used cooking oil"
+  }
 }

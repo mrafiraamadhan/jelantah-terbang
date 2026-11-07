@@ -8,7 +8,7 @@ Tim Wirahmadhan · UNS Innovation Hackathon 2026 · Track Energi, Subtema B: Pen
 
 ## Masalah
 
-Dapur Makan Bergizi Gratis (SPPG) menghasilkan jelantah dalam jumlah besar. Beratnya dicatat manual, mutunya tidak diukur, dan tujuan akhirnya tidak tercatat. Akibatnya, jelantah dapur tidak dapat dihitung sebagai bahan baku bioavtur bersertifikat (ISCC), dan harganya ditentukan pengepul.
+Dapur Makan Bergizi Gratis (SPPG) menghasilkan jelantah dalam jumlah besar. Beratnya dicatat manual, mutunya tidak diukur, dan tujuan akhirnya tidak tercatat. Akibatnya, jelantah dapur tidak dapat dihitung sebagai bahan baku bioavtur bersertifikat (ISCC), dan harganya ditentukan pengepul. Formulir pernyataan ISCC saja tidak cukup: titik asal di bawah 5 ton per bulan tidak diaudit, celah yang dipakai untuk menyamarkan minyak sawit murni sebagai jelantah (Transport & Environment, 2024). JELANTAH TERBANG melengkapi program pengumpulan jelantah Pertamina dengan bukti per kiriman.
 
 ## Solusi
 
@@ -16,7 +16,7 @@ Petugas memotret layar timbangan seperti biasa. Model AI:
 
 1. membaca berat pada layar timbangan;
 2. mengenali wadah terdaftar untuk mengurangkan tara secara otomatis;
-3. menaksir mutu (kadar asam lemak bebas) dari foto tetesan minyak pada kartu acuan, lalu memilah jalur bioavtur, biodiesel, atau nonenergi;
+3. menaksir mutu dagang (asam lemak bebas, air, dan endapan) dari foto minyak di atas kartu acuan, lalu menetapkan kelas mutu untuk harga yang adil dan kebutuhan pra-olah. Acuan pasar: FFA maks. 5% dan MIU maks. 2%. Jalur bioavtur (HEFA) atau biodiesel ditentukan pembeli;
 4. memeriksa kewajaran jumlah dengan neraca massa per dapur.
 
 Setiap kiriman memperoleh **paspor ber-QR** yang memuat berat, mutu, asal, dan dokumen sumber siap audit.
@@ -27,7 +27,7 @@ Setiap kiriman memperoleh **paspor ber-QR** yang memuat berat, mutu, asal, dan d
 |---|---|
 | Beranda | Masalah, solusi, bukti lapangan 6 SPPG (harga Rp7.500–11.000/kg), dan cara kerja dalam satu layar |
 | 1 · Catat | **Kamera berstempel otomatis:** foto timbangan → stempel waktu, tanggal, nama dapur, GPS, dan kode foto (SHA-256) → tara dan berat bersih dihitung → paspor ber-QR yang isinya tersimpan di QR (bisa diperiksa tanpa server) dan dapat diunduh sebagai JSON. Disertai contoh data nyata 24 Oktober 2026 (4 foto, 16 galon) |
-| 2 · Mutu | **Berjalan langsung di peramban:** foto jelantah di atas kertas putih → kejernihan (cahaya yang menembus minyak), warna CIELAB (L\*, b\*, sudut warna), dan indikator partikel → kelas A/B/C dan jalur bioavtur, biodiesel, atau nonenergi |
+| 2 · Mutu | **Berjalan langsung di peramban:** foto jelantah di atas kertas putih → kejernihan (cahaya yang menembus minyak), warna CIELAB (L\*, b\*, sudut warna), dan indikator partikel → kelas A (layak dijual), B (perlu pra-olah ringan), C (perlu uji laboratorium) |
 | 3 · Paspor | Paspor kiriman ber-QR dan simulasi serah terima dapur → pengepul → tujuan akhir |
 | 4 · Dasbor | Neraca minyak, kiriman bulanan, temuan audit foto |
 | 5 · Verifikasi | Membaca berkas paspor JSON dan mencocokkan sidik digital SHA-256 foto sumber yang dihitung langsung di peramban |
@@ -56,7 +56,7 @@ Pendekatan warna untuk menilai minyak goreng bekas mengikuti Udomkun, Innawong, 
 | Nov–Des 2026 | Arsip foto berlabel, ≥ 40 sampel uji asam lemak bebas, model AI v1 | Dataset berlabel, model v1 |
 | Des 2026–Feb 2027 | Hackathon UNS; aplikasi ponsel, dasbor, paspor QR | Aplikasi v1 |
 | Feb–Apr 2027 | Uji coba 3 SPPG ≥ 8 minggu (termasuk Ramadan) | TKT 6 |
-| Mar–Mei 2027 | Kajian regulasi dan syarat ISCC, perjanjian kerja sama, uji harga | Draf tata kelola, mitra jalur energi |
+| Mar–Mei 2027 | Kajian regulasi dan syarat ISCC, perjanjian kerja sama, uji harga; replikasi Solo Raya bersama DLH Kota Surakarta dan Disperinaker Sukoharjo | Draf tata kelola, mitra jalur energi |
 
 ## Status
 
